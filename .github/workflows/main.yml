@@ -1,0 +1,20 @@
+name: CICD with ArgoCD
+on: push 
+jobs:
+ cicd:
+  env:
+   imageName: "argocddemo"
+  runs-on: ubuntu-latest
+  steps:
+   - name: Checkout the repo 
+     uses: actions/checkout@v3
+   - name: Setup Java 11
+     uses: actions/setup-java@v4
+     with:
+      distribution: 'temurin'
+      java-version: '11'
+      cache: 'maven'
+   - name: Build the code 
+     run: mvn package 
+   - name: Install docker buildx tool 
+     uses: actions/setup-buildx-action@v2
