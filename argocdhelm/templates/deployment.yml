@@ -22,5 +22,5 @@ spec:
     spec:
       containers:
        - name: app
-         image: sonal04/argocddemo:11
+         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
 
