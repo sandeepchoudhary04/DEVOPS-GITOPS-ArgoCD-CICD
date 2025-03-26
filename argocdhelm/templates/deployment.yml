@@ -22,5 +22,5 @@ spec:
     spec:
       containers:
        - name: app
-         image: sonal04/argocddemo:c1c1d65e0aab43d24cf78a660ca41ec0916e2ff1
+         image: sonal04/argocddemo:latest
 
