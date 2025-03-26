@@ -29,14 +29,14 @@ jobs:
      with:
       context: .
       push: true 
-      tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.imageName }}:${{ github.sha }}
+      tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.imageName }}:${{ github.run_number }}
    - name: Trigger Deployment using ArgoCD
      run: |
       cd argocdhelm/templates
-      echo ${{ github.sha }}
+      echo ${{ github.run_number }}
       git config --global user.name 'GitHub Actions'
       git config --global user.email 'actions@github.com'
-      sed -i "s/latest/${{ github.sha }}/g" deployment.yml
+      sed -i "s/latest/${{ github.run_number }}/g" deployment.yml
       git add deployment.yml
       git commit -m "Update file again deplyment.yaml"
       git push
