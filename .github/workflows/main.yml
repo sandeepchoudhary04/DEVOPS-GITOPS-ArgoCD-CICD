@@ -3,7 +3,7 @@ on: push
 jobs:
   CICDJob:
     env:
-      imagename: argocdimage
+      imagename: "argocdimage"
     runs-on: ubuntu-latest
     steps:
      - name: checkout the repo
