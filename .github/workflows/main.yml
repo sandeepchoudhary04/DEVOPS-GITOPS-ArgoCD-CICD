@@ -27,4 +27,14 @@ jobs:
        with:
          context: .
          push: true
-         tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.imagename }}:${{ github.run_number }}
+         tag: ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.imagename }}:${{ github.run_number }}
+     - name: Trigger Deployment using argocd
+       run: |
+         cd argocd
+         echo ${{ github.run_number }}
+         git config --global user.name 'Github Actions'
+         git config --global user.email 'actions@github.com'
+         sed -i "s/^ tag: .*/ tag: ${{ github.run_number }}/" values.yaml
+         git add values.yaml
+         git commit -m "file values.yaml updated"
+         git push
