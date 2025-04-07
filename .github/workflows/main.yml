@@ -31,7 +31,7 @@ jobs:
       tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.imageName }}:${{ github.run_number }}
    - name: Trigger Deployment using ArgoCD
      run: |
-      cd argocdhelm
+      cd argocd
       echo ${{ github.run_number }}
       git config --global user.name 'GitHub Actions'
       git config --global user.email 'actions@github.com'
